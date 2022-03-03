@@ -1,19 +1,68 @@
-@import url(https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css);
+:root {
+    --bg-color: #011a27;
+    --main-color: #f0810f;
+    --sub-color: #063852;
+}
+
 body {
-    background-color: #011a27;
-    /* background-color: #063852; */
+    background-color: var(--bg-color);
+}
+.btn {
+    color: #fff;
+    border-radius: 0;
+    background-color: var(--main-color);
+    border: none;
 }
 
-.container {
-    background-color: red;
+.btn:hover{
+    background-color: var(--main-color);
+    color: #fff;
 }
-
 .nav-pills .nav-link {
     border-radius: 0;
     color: #fff;
 }
 
 .nav-pills .nav-link.active,
-.nav-pills .show>.nav-link {
-    background-color: #f0810f;
+.nav-pills .show > .nav-link {
+    background-color: var(--main-color);
+}
+
+/* .overlay{
+    width: 100%;
+    height: 100px;
+    background-image: url("../img/bg-img.jpg");
+} */
+
+.card {
+    border-radius: 0;
+    border: none;
+    background: var(--sub-color);
+    color: #fff;
+}
+
+.images {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 400px;
+}
+
+.images * {
+    position: absolute;
+    width: 100%;
+    height: 400px;
+    transition: .5s cubic-bezier(.38,.13,.66,.53);
+    top: 0;
+}
+.images *:nth-child(1) {
+    left: 0;
+}
+
+.images *:nth-child(2) {
+    left: 100%;
+}
+
+.images:hover * {
+    transform: translateX(-100%);
 }
