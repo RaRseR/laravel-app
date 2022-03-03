@@ -7,17 +7,25 @@
 body {
     background-color: var(--bg-color);
 }
+
+section{
+    color: #fff;
+    margin: 5vh 0;
+}
 .btn {
     color: #fff;
     border-radius: 0;
     background-color: var(--main-color);
     border: none;
+    animation: neon 10s infinite ;
 }
 
 .btn:hover{
     background-color: var(--main-color);
     color: #fff;
 }
+
+
 .nav-pills .nav-link {
     border-radius: 0;
     color: #fff;
@@ -26,14 +34,12 @@ body {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
     background-color: var(--main-color);
+    animation: neon 10s infinite ;
 }
 
-/* .overlay{
-    width: 100%;
-    height: 100px;
-    background-image: url("../img/bg-img.jpg");
-} */
-
+.form-control, .modal-content{
+    border-radius: 0;
+}
 .card {
     border-radius: 0;
     border: none;
@@ -65,4 +71,35 @@ body {
 
 .images:hover * {
     transform: translateX(-100%);
+}
+
+.icon{
+    right: 20px;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+}
+
+.carousel-inner{
+    max-height: 350px;
+}
+
+
+@keyframes neon{
+    0%,100%{
+        background-color: var(--main-color);
+    }
+    20%{
+        background-color: #f0430f;
+    }
+    40%{
+        background-color: #f0ce0f;
+    }
+    60%{
+        background-color: #0ff0b8;
+    }
+    80%{
+        background-color: #9d0ff0;
+    }
+
 }
