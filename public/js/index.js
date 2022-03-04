@@ -3,12 +3,18 @@ function ShowPassword(input) {
 }
 
 function handlePasswordChange() {
+    successAlert.style.display = "none";
     let pass1 = document.getElementById("signUpPass1");
     let pass2 = document.getElementById("signUpPass2");
     if (pass1.value != pass2.value) {
         pass1.classList.add("invalid");
         pass2.classList.add("invalid");
-        dangerAlert.innerHTML = "<span>Different passwords<span/>"
+        if (dangerAlert.innerHTML){
+            dangerAlert.innerHTML += "<p>Different passwords<span/>";
+        } else {
+            dangerAlert.innerHTML = "<p>Different passwords<span/>";
+        }
+        
         dangerAlert.style.display = "block";
     } else {
         pass1.classList.remove("invalid");
@@ -19,6 +25,7 @@ function handlePasswordChange() {
 }
 
 function handleSubmit(event, form) {
+    dangerAlert.innerHTML = "";
     event.preventDefault();
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "/signUp");
@@ -27,17 +34,24 @@ function handleSubmit(event, form) {
         xhr.send(data);
         xhr.onload = () => {
             response = JSON.parse(xhr.response);
-            if (result.result == "success") {
+            if (response.result == "success") {
 
+                successAlert.style.display = "block";
+
+                dangerAlert.innerHTML = "";
+                dangerAlert.style.display = "none";
+
+                form.reset();
             } else {
-                result.errors.forEach(error => {
-                    dangerAlert.innerHTML += `<span>${error}<span/><br/>`
-                });
+                Object.values(response.errors).forEach(error => {
+                    dangerAlert.innerHTML += `<p>${error}<p/>`;
+                })
                 dangerAlert.style.display = "block";
+                successAlert.style.display = "none";
             }
         }
     } else {
-        dangerAlert.innerHTML = "<span>Different passwords<span/>"
+        dangerAlert.innerHTML = "<p>Different passwords<p/>"
         dangerAlert.style.display = "block";
     }
 }

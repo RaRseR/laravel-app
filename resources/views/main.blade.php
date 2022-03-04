@@ -17,20 +17,19 @@
                     <input type="email" name="userEmail"  class="form-control mt-1" placeholder="Email" required>
                     <div class="d-flex align-items-center">
                         <input type="password" name="password1" id="signUpPass1" class="form-control mt-1"
-                            placeholder="Password" onchange="handlePasswordChange()" required>
+                            placeholder="Password" oninput="handlePasswordChange()" required>
                         <img class="icon" src="img/icons/eye.svg" alt=""
                             onclick="ShowPassword('signUpPass1')">
                     </div>
                     <div class="d-flex align-items-center">
                         <input type="password" name="password2" id="signUpPass2" class="form-control my-1"
-                            placeholder="Repeat password" onchange="handlePasswordChange()" required>
+                            placeholder="Repeat password" oninput="handlePasswordChange()" required>
                         <img class="icon" src="img/icons/eye.svg" alt=""
                             onclick="ShowPassword('signUpPass2')">
                     </div>
-                    <div class="alert alert-danger" role="alert" id="dangerAlert" style="display: none">
-                        
-                    </div>
-                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                    <div class="alert alert-danger" role="alert" id="dangerAlert" style="display: none"></div>
+                    <div class="alert alert-success" role="alert" id="successAlert" style="display: none"><span>Success sign up<span/></div>
+                    <button type="submit" class="btn">Sign Up</button>
                 </form>
             </div>
         </div>
@@ -108,6 +107,45 @@
 
     <section id="orders">
         <div class="row">
+            <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                    <div class="images">
+                        <div style="background: url('../img/img1.jpg') center center"></div>
+                        <div style="background: url('../img/img2.jpg') center center"></div>
+
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Order name</h5>
+                        <p class="card-text">order type</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                    <div class="images">
+                        <div style="background: url('../img/img1.jpg') center center"></div>
+                        <div style="background: url('../img/img2.jpg') center center"></div>
+
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Order name</h5>
+                        <p class="card-text">order type</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                    <div class="images">
+                        <div style="background: url('../img/img1.jpg') center center"></div>
+                        <div style="background: url('../img/img2.jpg') center center"></div>
+
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Order name</h5>
+                        <p class="card-text">order type</p>
+                    </div>
+                </div>
+            </div>
             <div class="col-3">
                 <div class="card" style="width: 18rem;">
                     <div class="images">
