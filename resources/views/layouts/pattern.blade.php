@@ -30,61 +30,7 @@
 
     </header>
 
-    {{-- modals --}}
-    <div class="modal" tabindex="-1" id="signUpForm">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Sign Up</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="" method="post">
-                        @csrf
-                        <input type="text" name="User_name" id="" class="form-control mt-1" placeholder="User name">
-                        <input type="email" name="User_email" id="" class="form-control mt-1" placeholder="Email">
-                        <div class="d-flex align-items-center">
-                            <input type="password" name="Password" id="SignUpPass1" class="form-control mt-1"
-                                placeholder="Password">
-                            <img class="icon" src="img/icons/eye.svg" alt=""
-                                onclick="ShowPassword('SignUpPass1')">
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <input type="password" name="Password" id="SignUpPass2" class="form-control my-1"
-                                placeholder="Repeat password">
-                            <img class="icon" src="img/icons/eye.svg" alt=""
-                                onclick="ShowPassword('SignUpPass2')">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Sign Up</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal" tabindex="-1" id="signInForm">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Sign In</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="" method="post">
-                        @csrf
-                        <input type="text" name="User_name" id="" class="form-control my-1" placeholder="User name">
-                        <div class="d-flex align-items-center">
-                            <input type="password" name="Password" id="SignUpPass" class="form-control my-1"
-                                placeholder="Password">
-                            <img class="icon" src="img/icons/eye.svg" alt=""
-                                onclick="ShowPassword('SignUpPass')">
-                        </div>
-                        <button type="button" class="btn btn-primary">Sign In</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    {{-- modals --}}
+  
 
     <div class="container">
 

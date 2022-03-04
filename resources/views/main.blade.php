@@ -2,9 +2,67 @@
 
 
 @section('content')
+  {{-- modals --}}
+  <div class="modal" tabindex="-1" id="signUpForm">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sign Up</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post" onsubmit="handleSubmit(event, this)" name="signUpForm">
+                    @csrf
+                    <input type="text" name="userName"class="form-control mt-1" placeholder="User name" required>
+                    <input type="email" name="userEmail"  class="form-control mt-1" placeholder="Email" required>
+                    <div class="d-flex align-items-center">
+                        <input type="password" name="password1" id="signUpPass1" class="form-control mt-1"
+                            placeholder="Password" onchange="handlePasswordChange()" required>
+                        <img class="icon" src="img/icons/eye.svg" alt=""
+                            onclick="ShowPassword('signUpPass1')">
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <input type="password" name="password2" id="signUpPass2" class="form-control my-1"
+                            placeholder="Repeat password" onchange="handlePasswordChange()" required>
+                        <img class="icon" src="img/icons/eye.svg" alt=""
+                            onclick="ShowPassword('signUpPass2')">
+                    </div>
+                    <div class="alert alert-danger" role="alert" id="dangerAlert" style="display: none">
+                        
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" id="signInForm">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sign In</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post">
+                    @csrf
+                    <input type="text" name="userName" class="form-control my-1" placeholder="User name" required>
+                    <div class="d-flex align-items-center">
+                        <input type="password" name="password" id="signUpPass" class="form-control my-1"
+                            placeholder="Password" required>
+                        <img class="icon" src="img/icons/eye.svg" alt=""
+                            onclick="ShowPassword('signUpPass')">
+                    </div>
+                    <button type="button" class="btn btn-primary">Sign In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- modals --}}
     <section id="main">
         <div class="row">
-            <div class="col-6">
+            <div class="col-6 neon-line">
                 <h1>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </h1>
