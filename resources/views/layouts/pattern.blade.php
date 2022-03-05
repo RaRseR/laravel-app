@@ -19,18 +19,22 @@
             <li class="nav-item"><a href="#" class="nav-link">Reviews</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Contacts</a></li>
             <li class="nav-item ">
-                <button type="button" class="btn mx-2" data-bs-toggle="modal" data-bs-target="#signUpForm">
-                    Sign Up
-                </button>
-                <button type="button" class="btn mx-2" data-bs-toggle="modal" data-bs-target="#signInForm">
-                    Sign In
-                </button>
+                @if (Auth::check())
+                    <a href="#" class="btn">Profile</span></a>
+                @else
+                    <button type="button" class="btn mx-2" data-bs-toggle="modal" data-bs-target="#signUpForm">
+                        Sign Up
+                    </button>
+                    <button type="button" class="btn mx-2" data-bs-toggle="modal" data-bs-target="#signInForm">
+                        Sign In
+                    </button>
+                @endif
             </li>
         </ul>
 
     </header>
 
-  
+
 
     <div class="container">
         @yield('content')

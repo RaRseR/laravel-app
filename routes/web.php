@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::post('/signUp', [UserController::class, 'signUp']);
+Route::post('/signIn', [UserController::class, 'signIn']);

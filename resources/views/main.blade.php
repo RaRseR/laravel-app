@@ -11,7 +11,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="" method="post" onsubmit="handleSubmit(event, this)" name="signUpForm">
+                <form action="" method="post" onsubmit="handleSignUpSubmit(event, this)" name="signUpForm">
                     @csrf
                     <input type="text" name="userName"class="form-control mt-1" placeholder="User name" required>
                     <input type="email" name="userEmail"  class="form-control mt-1" placeholder="Email" required>
@@ -43,16 +43,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="" method="post">
+                <form action="" method="post" onsubmit="handleSignInSubmit(event, this)" name="signInForm">
                     @csrf
                     <input type="text" name="userName" class="form-control my-1" placeholder="User name" required>
                     <div class="d-flex align-items-center">
-                        <input type="password" name="password" id="signUpPass" class="form-control my-1"
+                        <input type="password" name="password" id="signInPass" class="form-control my-1"
                             placeholder="Password" required>
                         <img class="icon" src="img/icons/eye.svg" alt=""
-                            onclick="ShowPassword('signUpPass')">
+                            onclick="ShowPassword('signInPass')">
                     </div>
-                    <button type="button" class="btn btn-primary">Sign In</button>
+                    <div class="alert alert-danger" role="alert" id="dangerAlert" style="display: none"></div>
+                    <button type="submit" class="btn btn-primary">Sign In</button>
                 </form>
             </div>
         </div>

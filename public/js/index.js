@@ -9,12 +9,7 @@ function handlePasswordChange() {
     if (pass1.value != pass2.value) {
         pass1.classList.add("invalid");
         pass2.classList.add("invalid");
-        if (dangerAlert.innerHTML){
-            dangerAlert.innerHTML += "<p>Different passwords<span/>";
-        } else {
-            dangerAlert.innerHTML = "<p>Different passwords<span/>";
-        }
-        
+        dangerAlert.innerHTML = "<p>Different passwords<p/>";
         dangerAlert.style.display = "block";
     } else {
         pass1.classList.remove("invalid");
@@ -24,9 +19,9 @@ function handlePasswordChange() {
     }
 }
 
-function handleSubmit(event, form) {
-    dangerAlert.innerHTML = "";
+function handleSignUpSubmit(event, form) {
     event.preventDefault();
+    if (dangerAlert.innerHTML) dangerAlert.innerHTML = "";
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "/signUp");
     let data = new FormData(document.forms[`${form.name}`]);
@@ -35,17 +30,16 @@ function handleSubmit(event, form) {
         xhr.onload = () => {
             response = JSON.parse(xhr.response);
             if (response.result == "success") {
-
                 successAlert.style.display = "block";
-
-                dangerAlert.innerHTML = "";
                 dangerAlert.style.display = "none";
+                dangerAlert.innerHTML = "";
 
                 form.reset();
             } else {
                 Object.values(response.errors).forEach(error => {
                     dangerAlert.innerHTML += `<p>${error}<p/>`;
                 })
+
                 dangerAlert.style.display = "block";
                 successAlert.style.display = "none";
             }
@@ -53,5 +47,25 @@ function handleSubmit(event, form) {
     } else {
         dangerAlert.innerHTML = "<p>Different passwords<p/>"
         dangerAlert.style.display = "block";
+    }
+}
+
+function handleSignInSubmit(event, form) {
+    event.preventDefault();
+    if (dangerAlert.innerHTML) dangerAlert.innerHTML = "";
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "/signIn");
+    let data = new FormData(document.forms[`${form.name}`]);
+    xhr.send(data);
+    xhr.onload = () => {
+        response = JSON.parse(xhr.response);
+        if (response.result == "success") {
+            window.location.assign('/');
+        } else {
+            Object.values(response.errors).forEach(error => {
+                dangerAlert.innerHTML += `<p>${error}<p/>`;
+            });
+            dangerAlert.style.display = "block";
+        }
     }
 }
