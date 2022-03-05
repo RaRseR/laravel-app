@@ -40,5 +40,11 @@ class UserController extends Controller
         if ($validator->fails()) return response()->json(['result' => 'error', 'errors' => $validator->errors()], 400);
         if (Auth::attempt(['name' => $r->userName, 'password' => $r->password], true))
             return response()->json(['result' => 'success'], 200);
+        return response()->json(['result' => 'error'], 400);
+    }
+
+    public function signOut()
+    {
+        Auth::logout();
     }
 }

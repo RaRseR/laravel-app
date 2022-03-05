@@ -2,6 +2,7 @@ function ShowPassword(input) {
     document.getElementById(input).type = document.getElementById(input).type == "password" ? "text" : "password";
 }
 
+
 function handlePasswordChange() {
     successAlert.style.display = "none";
     let pass1 = document.getElementById("signUpPass1");
@@ -9,52 +10,52 @@ function handlePasswordChange() {
     if (pass1.value != pass2.value) {
         pass1.classList.add("invalid");
         pass2.classList.add("invalid");
-        dangerAlert.innerHTML = "<p>Different passwords<p/>";
-        dangerAlert.style.display = "block";
+        signUpDangerAlert.innerHTML = "<p>Different passwords<p/>";
+        signUpDangerAlert.style.display = "block";
     } else {
         pass1.classList.remove("invalid");
         pass2.classList.remove("invalid");
-        dangerAlert.innerHTML = "";
-        dangerAlert.style.display = "none";
+        signUpDangerAlert.style.display = "none";
+        signUpDangerAlert.innerHTML = "";
     }
 }
 
 function handleSignUpSubmit(event, form) {
     event.preventDefault();
-    if (dangerAlert.innerHTML) dangerAlert.innerHTML = "";
+    if (signUpDangerAlert.innerHTML) signUpDangerAlert.innerHTML = "";
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "/signUp");
+    xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector("meta[name='csrf-token']").content);
     let data = new FormData(document.forms[`${form.name}`]);
     if (data.get('password1') === data.get('password2')) {
         xhr.send(data);
         xhr.onload = () => {
             response = JSON.parse(xhr.response);
             if (response.result == "success") {
-                successAlert.style.display = "block";
-                dangerAlert.style.display = "none";
-                dangerAlert.innerHTML = "";
-
                 form.reset();
+                successAlert.style.display = "block";
+                signUpDangerAlert.style.display = "none";
+                signUpDangerAlert.innerHTML = "";
             } else {
                 Object.values(response.errors).forEach(error => {
-                    dangerAlert.innerHTML += `<p>${error}<p/>`;
+                    signUpDangerAlert.innerHTML += `<p>${error}<p/>`;
                 })
-
-                dangerAlert.style.display = "block";
+                signUpDangerAlert.style.display = "block";
                 successAlert.style.display = "none";
             }
         }
     } else {
-        dangerAlert.innerHTML = "<p>Different passwords<p/>"
-        dangerAlert.style.display = "block";
+        signUpDangerAlert.innerHTML = "<p>Different passwords<p/>"
+        signUpDangerAlert.style.display = "block";
     }
 }
 
 function handleSignInSubmit(event, form) {
     event.preventDefault();
-    if (dangerAlert.innerHTML) dangerAlert.innerHTML = "";
+    if (signInDangerAlert.innerHTML) signInDangerAlert.innerHTML = "";
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "/signIn");
+    xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector("meta[name='csrf-token']").content);
     let data = new FormData(document.forms[`${form.name}`]);
     xhr.send(data);
     xhr.onload = () => {
@@ -62,10 +63,18 @@ function handleSignInSubmit(event, form) {
         if (response.result == "success") {
             window.location.assign('/');
         } else {
-            Object.values(response.errors).forEach(error => {
-                dangerAlert.innerHTML += `<p>${error}<p/>`;
-            });
-            dangerAlert.style.display = "block";
+            signInDangerAlert.innerHTML += `<p>Incorrect username or password<p/>`;
+            signInDangerAlert.style.display = "block";
         }
+    }
+}
+
+function signOut() {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "/signOut");
+    xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector("meta[name='csrf-token']").content);
+    xhr.send();
+    xhr.onload = () => {
+        window.location.assign('/');
     }
 }

@@ -12,7 +12,6 @@
             </div>
             <div class="modal-body">
                 <form action="" method="post" onsubmit="handleSignUpSubmit(event, this)" name="signUpForm">
-                    @csrf
                     <input type="text" name="userName"class="form-control mt-1" placeholder="User name" required>
                     <input type="email" name="userEmail"  class="form-control mt-1" placeholder="Email" required>
                     <div class="d-flex align-items-center">
@@ -27,7 +26,7 @@
                         <img class="icon" src="img/icons/eye.svg" alt=""
                             onclick="ShowPassword('signUpPass2')">
                     </div>
-                    <div class="alert alert-danger" role="alert" id="dangerAlert" style="display: none"></div>
+                    <div class="alert alert-danger" role="alert" id="signUpDangerAlert" style="display: none"></div>
                     <div class="alert alert-success" role="alert" id="successAlert" style="display: none"><span>Success sign up<span/></div>
                     <button type="submit" class="btn">Sign Up</button>
                 </form>
@@ -44,7 +43,6 @@
             </div>
             <div class="modal-body">
                 <form action="" method="post" onsubmit="handleSignInSubmit(event, this)" name="signInForm">
-                    @csrf
                     <input type="text" name="userName" class="form-control my-1" placeholder="User name" required>
                     <div class="d-flex align-items-center">
                         <input type="password" name="password" id="signInPass" class="form-control my-1"
@@ -52,7 +50,7 @@
                         <img class="icon" src="img/icons/eye.svg" alt=""
                             onclick="ShowPassword('signInPass')">
                     </div>
-                    <div class="alert alert-danger" role="alert" id="dangerAlert" style="display: none"></div>
+                    <div class="alert alert-danger" role="alert" id="signInDangerAlert" style="display: none"></div>
                     <button type="submit" class="btn btn-primary">Sign In</button>
                 </form>
             </div>
