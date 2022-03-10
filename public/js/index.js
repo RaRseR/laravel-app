@@ -1,5 +1,6 @@
 function ShowPassword(input) {
-    document.getElementById(input).type = document.getElementById(input).type == "password" ? "text" : "password";
+    let inputField = document.getElementById(input);
+    inputField.type = inputField.type == "password" ? "text" : "password";
 }
 
 
@@ -66,15 +67,5 @@ function handleSignInSubmit(event, form) {
             signInDangerAlert.innerHTML += `<p>Incorrect username or password<p/>`;
             signInDangerAlert.style.display = "block";
         }
-    }
-}
-
-function signOut() {
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "/signOut");
-    xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector("meta[name='csrf-token']").content);
-    xhr.send();
-    xhr.onload = () => {
-        window.location.assign('/');
     }
 }

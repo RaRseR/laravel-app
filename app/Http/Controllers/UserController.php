@@ -46,5 +46,11 @@ class UserController extends Controller
     public function signOut()
     {
         Auth::logout();
+        return redirect()->route('main');
+    }
+
+    public function profile()
+    {
+        return view('profile');
     }
 }

@@ -21,10 +21,10 @@
             <li class="nav-item"><a href="#" class="nav-link">Contacts</a></li>
             <li class="nav-item ">
                 @if (Auth::check())
-                    <a href="#" class="btn">Profile</span></a>
-                    <button type="button" class="btn mx-2" onclick="signOut()">
+                    <a href="/profile" class="btn">Profile</span></a>
+                    <a href="{{route('signOut')}}" class="btn mx-2">
                         Sign Out
-                    </button>
+                    </a>
                 @else
                     <button type="button" class="btn mx-2" data-bs-toggle="modal" data-bs-target="#signUpForm">
                         Sign Up

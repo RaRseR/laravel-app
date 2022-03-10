@@ -2,7 +2,7 @@
 
 
 @section('content')
-  {{-- modals --}}
+{{-- modals --}}
   <div class="modal" tabindex="-1" id="signUpForm">
     <div class="modal-dialog">
         <div class="modal-content">
