@@ -4,10 +4,10 @@ function ShowPassword(input) {
 }
 
 
-function handlePasswordChange() {
+function handlePasswordChange(first, second) {
     successAlert.style.display = "none";
-    let pass1 = document.getElementById("signUpPass1");
-    let pass2 = document.getElementById("signUpPass2");
+    let pass1 = document.getElementById(first.id);
+    let pass2 = document.getElementById(second);
     if (pass1.value != pass2.value) {
         pass1.classList.add("invalid");
         pass2.classList.add("invalid");

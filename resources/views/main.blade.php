@@ -16,13 +16,13 @@
                     <input type="email" name="userEmail"  class="form-control mt-1" placeholder="Email" required>
                     <div class="d-flex align-items-center">
                         <input type="password" name="password1" id="signUpPass1" class="form-control mt-1"
-                            placeholder="Password" oninput="handlePasswordChange()" required>
+                            placeholder="Password" oninput="handlePasswordChange(this, 'signUpPass2')" required>
                         <img class="icon" src="img/icons/eye.svg" alt=""
                             onclick="ShowPassword('signUpPass1')">
                     </div>
                     <div class="d-flex align-items-center">
                         <input type="password" name="password2" id="signUpPass2" class="form-control my-1"
-                            placeholder="Repeat password" oninput="handlePasswordChange()" required>
+                            placeholder="Repeat password" oninput="handlePasswordChange(this, 'signUpPass1')" required>
                         <img class="icon" src="img/icons/eye.svg" alt=""
                             onclick="ShowPassword('signUpPass2')">
                     </div>

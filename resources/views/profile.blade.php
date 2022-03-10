@@ -2,7 +2,7 @@
 
 @section('content')
   {{-- modals --}}
-  <div class="modal" tabindex="-1" id="signUpForm">
+  <div class="modal" tabindex="-1" id="changeInfoFrom">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -11,7 +11,20 @@
             </div>
             <div class="modal-body">
                 <form action="" method="post" name="">
-                    <input type="text" name="new_name"class="form-control mt-1" placeholder="New name" required>
+                    <input type="text" name="new_name"class="form-control mt-1" placeholder="New name">
+                    <input type="text" name="new_email"class="form-control mt-1" placeholder="New email">
+                    <div class="d-flex align-items-center">
+                        <input type="password" name="new_password" id="newPassword" class="form-control my-1"
+                            placeholder="Password" oninput="handlePasswordChange(this, 'newPasswordRepeat')">
+                        <img class="icon" src="img/icons/eye.svg" alt=""
+                            onclick="ShowPassword('newPassword')">
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <input type="password" name="new_password" id="newPasswordRepeat" class="form-control mb-1"
+                            placeholder="Repeat password"  oninput="handlePasswordChange(this, 'newPassword')">
+                        <img class="icon" src="img/icons/eye.svg" alt=""
+                            onclick="ShowPassword('newPasswordRepeat')">
+                    </div>
                     <button type="submit" class="btn">Save Changes</button>
                 </form>
             </div>
@@ -48,6 +61,9 @@
                 <h2>{{ Auth::user()->name }}</h2>
                 <p>{{ Auth::user()->email }}</p>
                 <p>user</p>
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#changeInfoFrom">
+                    Change User Info
+                </button>
             </div>
         </div>
     </section>
