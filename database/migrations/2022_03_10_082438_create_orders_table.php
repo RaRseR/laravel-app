@@ -16,7 +16,12 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('category');
-            $table->foreign('category')->references('id')->on('category');
+            $table->foreign('category')->references('id')->on('categories');
+            $table->unsignedBigInteger('user');
+            $table->foreign('user')->references('id')->on('users');
+            $table->integer('price');
+            $table->string('image_1');
+            $table->string('image_2');
             $table->timestamps();
         });
     }
