@@ -69,3 +69,19 @@ function handleSignInSubmit(event, form) {
         }
     }
 }
+
+function addOrder(event, form) {
+    event.preventDefault();
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", `${form.action}`);
+
+    xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector("meta[name='csrf-token']").content);
+
+    let data = new FormData(document.forms[`${form.name}`]);
+    xhr.send(data);
+    form.reset();
+    xhr.onload = () => {
+        response = JSON.parse(xhr.response);
+        console.log(response);
+    }
+}

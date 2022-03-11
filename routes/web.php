@@ -26,4 +26,5 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/signOut', [UserController::class, 'signOut'])->name("signOut");
     Route::get('/profile',[UserController::class, 'profile'])->name('profile');
+    Route::post('/addOrder',[UserController::class, 'addOrder'])->name('addOrder');
 });
