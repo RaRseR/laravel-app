@@ -39,8 +39,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('addOrder')}}" name="addOrder" method="POST" onsubmit="addOrder(event, this)"
-                        enctype="multipart/form-data">
+                    <form name="addOrderForm" method="POST" onsubmit="addOrder(event, this)" enctype="multipart/form-data">
                         <input type="text" name="orderName" class="form-control my-1" placeholder="Order name" required>
                         <select name="orderCategory" class="form-control my-1" placeholder="Order type" required>
                             @foreach ($categories as $category)
@@ -83,8 +82,14 @@
                 <div class="col-6 col-md-3 my-3">
                     <div class="card" style="width: 18rem;">
                         <div class="images">
-                            <div style="background: url('../img/img1.jpg') center center"></div>
-                            <div style="background: url('../img/img2.jpg') center center"></div>
+                            @if ($order->image_2)
+                                <div style="background: url('../img/img1.jpg') center center"></div>
+                                <div style="background: url('../img/img2.jpg') center center"></div>
+                            @else
+                                <div style="background: url('../images/{{$order->image_1}}') center center"></div>
+                                <div style="background: url('../images/{{$order->image_1}}') center center"></div>
+                            @endif
+
 
                         </div>
                         <div class="card-body">

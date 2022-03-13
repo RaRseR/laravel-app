@@ -73,7 +73,7 @@ function handleSignInSubmit(event, form) {
 function addOrder(event, form) {
     event.preventDefault();
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", `${form.action}`);
+    xhr.open("POST", `/addOrder`);
 
     xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector("meta[name='csrf-token']").content);
 

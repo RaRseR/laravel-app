@@ -106,19 +106,28 @@
 
     <section id="orders">
         <div class="row">
-            <div class="col-3">
-                <div class="card" style="width: 18rem;">
-                    <div class="images">
-                        <div style="background: url('../img/img1.jpg') center center"></div>
-                        <div style="background: url('../img/img2.jpg') center center"></div>
+            @foreach ($orders as $order)
+                <div class="col-6 col-md-3 my-3">
+                    <div class="card" style="width: 18rem;">
+                        <div class="images">
+                            @if ($order->image_2)
+                                <div style="background: url('../img/img1.jpg') center center"></div>
+                                <div style="background: url('../img/img2.jpg') center center"></div>
+                            @else
+                                <div style="background: url('../images/{{$order->image_1}}') center center"></div>
+                                <div style="background: url('../images/{{$order->image_1}}') center center"></div>
+                            @endif
 
+
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $order->name }}</h5>
+                            <p class="card-text">{{ $order->price }}</p>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Order name</h5>
-                        <p class="card-text">order type</p>
-                    </div>
+
                 </div>
-            </div>
+            @endforeach
         </div>
     </section>
 @endsection

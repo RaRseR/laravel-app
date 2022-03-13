@@ -63,22 +63,19 @@ class UserController extends Controller
         if ($validator->fails()) return response()->json(['result' => 'error', 'errors' => $validator->errors()], 400);
         if ($r->hasFile('image')) {
             $image = $r->file('image');
-            $imageOriginalName = $image->getClientOriginalName();
-            // $path = $image->store('public/images');
-            // Order::create([
-            //     'name' => $r->orderName,
-            //     'category' => $r->orderCategory,
-            //     'description' => $r->description,
-            //     'user' => Auth::user()->id,
-            //     'image_1'=> $r->$imageOriginalName
-            // ]);
+            $imageName = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+            Order::create([
+                'name' => $r->orderName,
+                'category' => $r->orderCategory,
+                'description' => $r->description,
+                'user' => Auth::user()->id,
+                'image_1'=> $imageName
+            ]);
+            return response()->json(['result' => $imageName], 200);
         } else {
             return response()->json(['result' => 'error', 'errors' => 'Please choose file'], 400);
         }
-
-        // return response()->json([$imageOriginalName], 200);
-        // return response()->json(['result' => 'success'], 200);
-        // Storage::disk('local')->put('', $file_content);
     }
     public function profile()
     {

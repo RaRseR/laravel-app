@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('category')->references('id')->on('categories');
             $table->unsignedBigInteger('user');
             $table->foreign('user')->references('id')->on('users');
+            $table->string('description');
             $table->integer('price');
             $table->string('image_1');
             $table->string('image_2');
