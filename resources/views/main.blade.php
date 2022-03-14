@@ -17,13 +17,13 @@
                     <div class="d-flex align-items-center">
                         <input type="password" name="password1" id="signUpPass1" class="form-control mt-1"
                             placeholder="Password" oninput="handlePasswordChange(this, 'signUpPass2')" required>
-                        <img class="icon" src="img/icons/eye.svg" alt=""
+                        <img class="icon" src="images/icons/eye.svg" alt=""
                             onclick="ShowPassword('signUpPass1')">
                     </div>
                     <div class="d-flex align-items-center">
                         <input type="password" name="password2" id="signUpPass2" class="form-control my-1"
                             placeholder="Repeat password" oninput="handlePasswordChange(this, 'signUpPass1')" required>
-                        <img class="icon" src="img/icons/eye.svg" alt=""
+                        <img class="icon" src="images/icons/eye.svg" alt=""
                             onclick="ShowPassword('signUpPass2')">
                     </div>
                     <div class="alert alert-danger" role="alert" id="signUpDangerAlert" style="display: none"></div>
@@ -45,9 +45,9 @@
                 <form action="" method="post" onsubmit="handleSignInSubmit(event, this)" name="signInForm">
                     <input type="text" name="userName" class="form-control my-1" placeholder="User name" required>
                     <div class="d-flex align-items-center">
-                        <input type="password" name="password" id="signInPass" class="form-control my-1"
+                        <input type="password" name="password" id="signInPass" class="form-control mb-1"
                             placeholder="Password" required>
-                        <img class="icon" src="img/icons/eye.svg" alt=""
+                        <img class="icon" src="images/icons/eye.svg" alt=""
                             onclick="ShowPassword('signInPass')">
                     </div>
                     <div class="alert alert-danger" role="alert" id="signInDangerAlert" style="display: none"></div>
@@ -80,13 +80,13 @@
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="../img/bg-img1.jpg" class="d-block w-100" alt="...">
+                            <img src="../images/carousel/1.jpg" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="../img/bg-img2.jpg" class="d-block w-100" alt="...">
+                            <img src="../images/carousel/2.jpg" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="../img/bg-img3.jpg" class="d-block w-100" alt="...">
+                            <img src="../images/carousel/3.jpg" class="d-block w-100" alt="...">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -114,8 +114,8 @@
                                 <div style="background: url('../img/img1.jpg') center center"></div>
                                 <div style="background: url('../img/img2.jpg') center center"></div>
                             @else
-                                <div style="background: url('../images/{{$order->image_1}}') center center"></div>
-                                <div style="background: url('../images/{{$order->image_1}}') center center"></div>
+                                <div style="background: url('../images/orders/{{$order->image_1}}') center center"></div>
+                                <div style="background: url('../images/orders/{{$order->image_1}}') center center"></div>
                             @endif
 
 

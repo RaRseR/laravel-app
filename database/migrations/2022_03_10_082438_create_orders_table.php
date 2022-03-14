@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user');
             $table->foreign('user')->references('id')->on('users');
             $table->string('description');
-            $table->integer('price');
+            $table->integer('price')->default(0);
             $table->string('image_1');
             $table->string('image_2');
             $table->timestamps();

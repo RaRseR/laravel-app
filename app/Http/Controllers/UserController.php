@@ -64,15 +64,15 @@ class UserController extends Controller
         if ($r->hasFile('image')) {
             $image = $r->file('image');
             $imageName = time().'.'.$image->getClientOriginalExtension();
-            $image->move(storage_path('app/public/images'), $imageName);
-            // $image->move(public_path('images'), $imageName);
-            // Order::create([
-            //     'name' => $r->orderName,
-            //     'category' => $r->orderCategory,
-            //     'description' => $r->description,
-            //     'user' => Auth::user()->id,
-            //     'image_1'=> $imageName
-            // ]);
+            // $image->move(storage_path('app/public/images'), $imageName);
+            $image->move(public_path('images/orders'), $imageName);
+            Order::create([
+                'name' => $r->orderName,
+                'category' => $r->orderCategory,
+                'description' => $r->description,
+                'user' => Auth::user()->id,
+                'image_1'=> $imageName
+            ]);
             return response()->json(['result' => $imageName], 200);
         } else {
             return response()->json(['result' => 'error', 'errors' => 'Please choose file'], 400);

@@ -79,9 +79,30 @@ function addOrder(event, form) {
 
     let data = new FormData(document.forms[`${form.name}`]);
     xhr.send(data);
-    form.reset();
     xhr.onload = () => {
         response = JSON.parse(xhr.response);
-        console.log(response);
+        if (response.result == "success") {
+            window.location.assign('/');
+        } else {
+            addOrderAlert.style.display = "block";
+        }
+    }
+}
+
+function sortOrders(currentCategory) {
+    currentCategory = currentCategory.value;
+    let orders = document.querySelectorAll(`[data-category]`);
+    if (currentCategory == 0) {
+        orders.forEach(order => {
+            order.style.display = "block";
+        });
+    } else {
+        orders.forEach(order => {
+            if (order.dataset.category == currentCategory){
+                order.style.display = "block";
+            } else {
+                order.style.display = "none";
+            }
+        });
     }
 }

@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- modals --}}
-    <div class="modal" tabindex="-1" id="changeInfoFrom">
+    {{-- <div class="modal" tabindex="-1" id="changeInfoFrom">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -30,7 +30,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="modal" tabindex="-1" id="addOrder">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -49,6 +49,9 @@
                         <input type="text" name="description" class="form-control my-1" placeholder="Order description"
                             required>
                         <input type="file" name="image" class="form-control my-1" placeholder="Select image" required>
+                        <div class="alert alert-danger" role="alert" id="addOrderAlert" style="display: none">
+                            Wrong file type</div>
+
                         <button type="submit" class="btn btn-primary">Add order</button>
                     </form>
                 </div>
@@ -77,23 +80,32 @@
     <section>
         <h2>Your orders </h2>
         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addOrder">Add order</button>
+        <select class="form-control my-1 w-50" onchange="sortOrders(this)">
+            <option value="0">All</option>
+            @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+        </select>
         <div class="row">
             @foreach ($orders as $order)
-                <div class="col-6 col-md-3 my-3">
+                <div class="col-6 col-md-3 my-3" data-category="{{ $order->category }}">
                     <div class="card" style="width: 18rem;">
                         <div class="images">
                             @if ($order->image_2)
                                 <div style="background: url('../img/img1.jpg') center center"></div>
                                 <div style="background: url('../img/img2.jpg') center center"></div>
                             @else
-                                <div style="background: url('../images/{{$order->image_1}}') center center"></div>
-                                <div style="background: url('../images/{{$order->image_1}}') center center"></div>
+                                <div style="background: url('../images/orders/{{ $order->image_1 }}') center center">
+                                </div>
+                                <div style="background: url('../images/orders/{{ $order->image_1 }}') center center">
+                                </div>
                             @endif
 
 
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ $order->name }}</h5>
+                            <p class="card-text">{{ $order->description }}</p>
                             <p class="card-text">{{ $order->price }}</p>
                         </div>
                     </div>
