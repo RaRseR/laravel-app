@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,14 @@ Route::middleware(['guest'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/signOut', [UserController::class, 'signOut'])->name("signOut");
-    Route::get('/profile',[UserController::class, 'profile'])->name('profile');
-    Route::post('/addOrder',[UserController::class, 'addOrder'])->name('addOrder');
+    Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+    Route::post('/addOrder', [UserController::class, 'addOrder'])->name('addOrder');
+});
+
+
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'main'])->name('admin');
+    Route::post('/addCategory', [AdminController::class, 'addCategory'])->name('addCategory');
+    Route::post('/deleteCategory', [AdminController::class, 'deleteCategory'])->name('deleteCategory');
 });

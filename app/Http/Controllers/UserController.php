@@ -73,7 +73,7 @@ class UserController extends Controller
                 'user' => Auth::user()->id,
                 'image_1'=> $imageName
             ]);
-            return response()->json(['result' => $imageName], 200);
+            return response()->json(['result' => 'success'], 200);
         } else {
             return response()->json(['result' => 'error', 'errors' => 'Please choose file'], 400);
         }

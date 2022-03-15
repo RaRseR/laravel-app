@@ -104,7 +104,9 @@ section {
 .carousel-inner {
     max-height: 300px;
 }
-
+#category_changes{
+    display: none;
+}
 /* .neon-line {
     position: relative;
     padding: 10px;

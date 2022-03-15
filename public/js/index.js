@@ -91,18 +91,56 @@ function addOrder(event, form) {
 
 function sortOrders(currentCategory) {
     currentCategory = currentCategory.value;
-    let orders = document.querySelectorAll(`[data-category]`);
+    let orders = document.querySelectorAll(`div[data-category]`);
     if (currentCategory == 0) {
         orders.forEach(order => {
             order.style.display = "block";
         });
     } else {
         orders.forEach(order => {
-            if (order.dataset.category == currentCategory){
+            if (order.dataset.category == currentCategory) {
                 order.style.display = "block";
             } else {
                 order.style.display = "none";
             }
         });
     }
+}
+function addCategory(event, form) {
+    event.preventDefault();
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", `/addCategory`);
+    xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector("meta[name='csrf-token']").content);
+
+    let data = new FormData(document.forms[`${form.name}`]);
+    xhr.send(data);
+    xhr.onload = () => {
+        response = JSON.parse(xhr.response);
+        if (response.result == "success") {
+            location.reload();
+        } else {
+            addCategoryAlert.style.display = "block";
+        }
+    }
+}
+
+function deleteCategory() {
+    let xhr = new XMLHttpRequest();
+    let inputs = [...document.querySelectorAll("input[type='checkbox']")];
+    let categories = inputs.filter(input => input.checked).map(input => Number(input.dataset.category));
+    let data = new FormData();
+    data.append('categories', categories);
+    xhr.open("POST", `/deleteCategory`);
+    xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector("meta[name='csrf-token']").content);
+    xhr.send(data);
+    xhr.onload = () => {
+        response = JSON.parse(xhr.response);
+        if (response.result == "success") {
+            location.reload();
+        }
+    }
+}
+
+function showChangesMenu() {
+    category_changes.style.display = category_changes.style.display == "none"? "block": "none";
 }

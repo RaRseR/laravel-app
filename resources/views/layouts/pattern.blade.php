@@ -21,8 +21,12 @@
             <li class="nav-item"><a href="#" class="nav-link">Contacts</a></li>
             <li class="nav-item ">
                 @if (Auth::check())
-                    <a href="/profile" class="btn">Profile</span></a>
-                    <a href="{{route('signOut')}}" class="btn mx-2">
+                    @if (Auth::user()->is_admin)
+                        <a href="/admin" class="btn">Admin</span></a>
+                    @else
+                        <a href="/profile" class="btn">Profile</span></a>
+                    @endif
+                    <a href="{{ route('signOut') }}" class="btn mx-2">
                         Sign Out
                     </a>
                 @else
