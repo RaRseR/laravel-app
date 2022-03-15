@@ -142,5 +142,10 @@ function deleteCategory() {
 }
 
 function showChangesMenu() {
-    category_changes.style.display = category_changes.style.display == "none"? "block": "none";
+    if (category_changes.style.height == 0 || category_changes.style.height == '0px'){
+        category_changes.style.height = "100%";
+    } else {
+        category_changes.style.height = '0px';
+    }
+    // category_changes.style.height = category_changes.style.height == '0px' ? "100%": "0px";
 }

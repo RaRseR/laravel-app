@@ -71,7 +71,6 @@
     <section>
         <h2>All orders</h2>
         <button type="button" class="btn" onclick="showChangesMenu()">Make changes in categories</button>
-        {{-- <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addOrder">Make changes in categories</button> --}}
         <div id="category_changes">
             <div class="row">
                 <div class="col-6 my-1">
