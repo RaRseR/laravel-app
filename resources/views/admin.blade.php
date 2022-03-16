@@ -77,8 +77,9 @@
                     <h3>Add new category</h3>
                     <form action="" method="post" onsubmit="addCategory(event, this)" name="newCategoryForm">
                         <input type="text" class="form-control" placeholder="Name of new category" name="newCategoryName">
-                        <div class="alert alert-danger my-1" role="alert" id="addCategoryAlert" style="display: none">Enter category name</div>
-                        <button type="submit" class="btn my-1" >addCategory</button>
+                        <div class="alert alert-danger my-1" role="alert" id="addCategoryAlert" style="display: none">Enter
+                            category name</div>
+                        <button type="submit" class="btn my-1">addCategory</button>
                     </form>
                 </div>
                 <div class="col-6">
@@ -110,21 +111,53 @@
                     <div class="card" style="width: 18rem;">
                         <div class="images">
                             @if ($order->image_2)
-                                <div style="background: url('../img/img1.jpg') center center"></div>
-                                <div style="background: url('../img/img2.jpg') center center"></div>
+                                <div style="background: url('../images/orders/{{ $order->image_1 }}') center center">
+                                </div>
+                                <div style="background: url('../images/orders/{{ $order->image_2 }}') center center">
+                                </div>
                             @else
                                 <div style="background: url('../images/orders/{{ $order->image_1 }}') center center">
                                 </div>
                                 <div style="background: url('../images/orders/{{ $order->image_1 }}') center center">
                                 </div>
                             @endif
-
-
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ $order->name }}</h5>
                             <p class="card-text">{{ $order->description }}</p>
                             <p class="card-text">{{ $order->price }}</p>
+                            <select onchange="selectNewStatus(this, {{ $order->id }})" class="form-select">
+                                @switch($order->status)
+                                    @case(1)
+                                        <option value="0">Start</option>
+                                        <option value="1" selected>In work</option>
+                                        <option value="2">Ready</option>
+                                    @break
+
+                                    @case(2)
+                                        <option value="0">Start</option>
+                                        <option value="1">In work</option>
+                                        <option value="2" selected>Ready</option>
+                                    @break
+
+                                    @default
+                                        <option value="0">Start</option>
+                                        <option value="1">In work</option>
+                                        <option value="2">Ready</option>
+                                @endswitch
+                            </select>
+                            <form name="firstStatusForm{{ $order->id }}" method="post"
+                                onsubmit="changeStatus(event, this,  {{ $order->id }})" style="display: none">
+                                <input type="text" class="form-control my-1" placeholder="Description" required
+                                    name="description">
+                                <button type="submit" class="btn my-1">Save changes</button>
+                            </form>
+                            <form name="secondStatusForm{{ $order->id }}" method="post"
+                                onsubmit="changeStatus(event, this,  {{ $order->id }})" enctype="multipart/form-data"
+                                style="display: none">
+                                <input type="file" class="form-control my-1" required name="image">
+                                <button type="submit" class="btn my-1">Save changes</button>
+                            </form>
                         </div>
                     </div>
 

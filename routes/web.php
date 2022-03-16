@@ -35,4 +35,5 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'main'])->name('admin');
     Route::post('/addCategory', [AdminController::class, 'addCategory'])->name('addCategory');
     Route::post('/deleteCategory', [AdminController::class, 'deleteCategory'])->name('deleteCategory');
+    Route::post('/changeStatus', [AdminController::class, 'changeStatus'])->name('changeStatus');
 });

@@ -106,6 +106,7 @@ function sortOrders(currentCategory) {
         });
     }
 }
+
 function addCategory(event, form) {
     event.preventDefault();
     let xhr = new XMLHttpRequest();
@@ -142,10 +143,50 @@ function deleteCategory() {
 }
 
 function showChangesMenu() {
-    if (category_changes.style.height == 0 || category_changes.style.height == '0px'){
+    if (category_changes.style.height == 0 || category_changes.style.height == '0px') {
         category_changes.style.height = "100%";
     } else {
         category_changes.style.height = '0px';
     }
     // category_changes.style.height = category_changes.style.height == '0px' ? "100%": "0px";
+}
+
+function selectNewStatus(select, orderId) {
+    let first = document.querySelector(`form[name=firstStatusForm${orderId}]`);
+    let second = document.querySelector(`form[name=secondStatusForm${orderId}]`);
+    let currentValue = select.value;
+    switch (currentValue) {
+        case '1':
+            first.style.display = "block";
+            second.style.display = "none";
+            break;
+        case '2':
+            first.style.display = "none";
+            second.style.display = "block";
+            break;
+        default:
+            first.style.display = "none";
+            second.style.display = "none";
+            break;
+    }
+}
+
+function changeStatus(event, form, orderId) {
+    event.preventDefault();
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", `/changeStatus`);
+
+    xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector("meta[name='csrf-token']").content);
+
+    let data = new FormData(document.forms[`${form.name}`]);
+    data.append('orderId', orderId);
+    xhr.send(data);
+    xhr.onload = () => {
+        response = JSON.parse(xhr.response);
+        if (response.result == "success") {
+            location.reload();
+        }
+        console.log(response);
+        console.log(response.data);
+    }
 }

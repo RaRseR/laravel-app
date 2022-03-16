@@ -29,11 +29,27 @@ class AdminController extends Controller
     }
     public function deleteCategory(Request $r)
     {
-        $categories = explode(',',$r->categories);
+        $categories = explode(',', $r->categories);
         // $categories = str_split($categories);
-        foreach($categories as $category){
+        foreach ($categories as $category) {
             Category::where('id', $category)->delete();
         }
         return response()->json(['result' => 'success'], 200);
+    }
+    public function changeStatus(Request $r)
+    {
+        if (isset($r->description)) {
+            Order::where('id', $r->orderId)->update(['status' => 1, "description" => $r->description]);
+            return response()->json(['result' => 'success'], 200);
+        } else {
+            if ($r->hasFile('image')) {
+                $image = $r->file('image');
+                $imageName = time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('images/orders'), $imageName);
+                Order::where('id', $r->orderId)->update(['status' => 2, "image_2" => $imageName]);
+            }
+            return response()->json(['result' => 'success'], 200);
+        }
+        
     }
 }
