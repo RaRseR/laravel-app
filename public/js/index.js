@@ -82,7 +82,7 @@ function addOrder(event, form) {
     xhr.onload = () => {
         response = JSON.parse(xhr.response);
         if (response.result == "success") {
-            window.location.assign('/');
+            location.reload();
         } else {
             addOrderAlert.style.display = "block";
         }

@@ -126,26 +126,27 @@
                             <h5 class="card-title">{{ $order->name }}</h5>
                             <p class="card-text">{{ $order->description }}</p>
                             <p class="card-text">{{ $order->price }}</p>
-                            <select onchange="selectNewStatus(this, {{ $order->id }})" class="form-select">
+                            
                                 @switch($order->status)
                                     @case(1)
-                                        <option value="0">Start</option>
-                                        <option value="1" selected>In work</option>
+                                    <select onchange="selectNewStatus(this, {{ $order->id }})" class="form-select">
+                                        <option value="1">In work</option>
                                         <option value="2">Ready</option>
+                                    </select>
                                     @break
 
                                     @case(2)
-                                        <option value="0">Start</option>
-                                        <option value="1">In work</option>
-                                        <option value="2" selected>Ready</option>
+                                        <h3>Ready</h3>
                                     @break
 
                                     @default
+                                    <select onchange="selectNewStatus(this, {{ $order->id }})" class="form-select">
                                         <option value="0">Start</option>
                                         <option value="1">In work</option>
                                         <option value="2">Ready</option>
+                                    </select>
                                 @endswitch
-                            </select>
+                            
                             <form name="firstStatusForm{{ $order->id }}" method="post"
                                 onsubmit="changeStatus(event, this,  {{ $order->id }})" style="display: none">
                                 <input type="text" class="form-control my-1" placeholder="Description" required

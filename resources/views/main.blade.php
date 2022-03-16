@@ -111,8 +111,8 @@
                     <div class="card" style="width: 18rem;">
                         <div class="images">
                             @if ($order->image_2)
-                                <div style="background: url('../img/img1.jpg') center center"></div>
-                                <div style="background: url('../img/img2.jpg') center center"></div>
+                                <div style="background: url('../images/orders/{{$order->image_1}}') center center"></div>
+                                <div style="background: url('../images/orders/{{$order->image_2}}') center center"></div>
                             @else
                                 <div style="background: url('../images/orders/{{$order->image_1}}') center center"></div>
                                 <div style="background: url('../images/orders/{{$order->image_1}}') center center"></div>
